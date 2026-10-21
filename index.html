@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>रैपbot · Drop a bar, get the next one</title>
+  <meta name="description" content="रैपbot: type one rap bar and get the next one back. Beginner, Intermediate and Advanced modes, plus a quick history of rap.">
+  <meta name="theme-color" content="#fafaf7">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='700' fill='%23fafaf7' text-anchor='middle'%3Eb%3C/text%3E%3Crect x='8' y='35' width='48' height='3' fill='%23fafaf7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-view="home">
+
+  <header class="site-header">
+    <a href="./" class="logo" id="logo" aria-label="रैपbot, go to home">
+      <span class="logo-hi" lang="hi">रैप</span><span class="logo-en">bot<span class="logo-line" aria-hidden="true"></span></span>
+    </a>
+  </header>
+
+  <main id="main">
+
+    <!-- HOME: three mode panels + Learn button -->
+    <section id="home" class="view view-home" aria-labelledby="home-title">
+      <h1 id="home-title" class="home-title">Pick your level. Drop a bar.<br>Get the next one back.</h1>
+
+      <div class="modes">
+        <button type="button" class="mode-panel" data-mode="beginner">
+          <span class="mode-num">01</span>
+          <span class="mode-name">Beginner Mode</span>
+          <span class="mode-desc">Simple end rhymes, easy words, steady flow.</span>
+        </button>
+        <button type="button" class="mode-panel" data-mode="intermediate">
+          <span class="mode-num">02</span>
+          <span class="mode-name">Intermediate Mode</span>
+          <span class="mode-desc">Multi-syllable and internal rhymes, switching schemes.</span>
+        </button>
+        <button type="button" class="mode-panel" data-mode="advanced">
+          <span class="mode-num">03</span>
+          <span class="mode-name">Advanced Mode</span>
+          <span class="mode-desc">Punchlines, double meanings, battle-style comebacks.</span>
+        </button>
+      </div>
+
+      <button type="button" id="learn-open" class="btn btn-outline btn-lg">Learn Before You Rap</button>
+    </section>
+
+    <!-- CHAT -->
+    <section id="chat" class="view view-chat" aria-label="Chat" hidden>
+      <div class="chat-top">
+        <button type="button" id="chat-back" class="btn btn-outline">&larr; Back</button>
+        <span id="mode-badge" class="mode-badge">Beginner Mode</span>
+        <button type="button" id="chat-learn" class="btn btn-ghost">Learn</button>
+      </div>
+
+      <form id="key-form" class="key-box" hidden>
+        <label for="key-input" class="key-label">Paste your Groq API key</label>
+        <div class="key-row">
+          <input id="key-input" class="field" type="password" placeholder="gsk_..." autocomplete="off" spellcheck="false" required>
+          <button type="submit" class="btn btn-solid">Save</button>
+        </div>
+        <p class="key-note">Your key is used only in this browser tab and is never stored on any server.
+          <a href="https://console.groq.com/keys" target="_blank" rel="noopener">Get a free key</a></p>
+      </form>
+
+      <div id="key-status" class="key-status" hidden>
+        <span>Key saved for this tab only. It goes straight to Groq and is never stored on any server.</span>
+        <button type="button" id="key-clear" class="btn-link">Clear key</button>
+      </div>
+
+      <div id="messages" class="messages" aria-live="polite"></div>
+
+      <form id="bar-form" class="bar-form" autocomplete="off">
+        <label for="bar-input" class="sr-only">Your bar</label>
+        <input id="bar-input" class="field bar-input" type="text" placeholder="Type one bar..." enterkeyhint="send">
+        <button type="submit" id="send-btn" class="btn btn-solid send-btn">Send</button>
+      </form>
+    </section>
+
+    <!-- LEARN: one section at a time, no scrolling -->
+    <section id="learn" class="view view-learn" aria-label="Learn Before You Rap" hidden>
+      <article class="learn-card">
+        <div class="learn-head">
+          <p id="learn-progress" class="learn-progress">Section 1 of 6</p>
+          <p id="learn-era" class="learn-era"></p>
+        </div>
+        <div class="learn-track" aria-hidden="true"><div id="learn-fill" class="learn-fill"></div></div>
+
+        <h2 id="learn-title" class="learn-title"></h2>
+        <div id="learn-body" class="learn-body"></div>
+
+        <div class="learn-nav">
+          <button type="button" id="learn-prev" class="btn btn-outline">&larr; Previous</button>
+          <button type="button" id="learn-next" class="btn btn-solid">Next &rarr;</button>
+          <button type="button" id="learn-start" class="btn btn-solid" hidden>Start Rapping</button>
+        </div>
+        <div class="learn-actions">
+          <button type="button" id="learn-chat" class="btn btn-ghost">Back to Chat</button>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Optional key for local testing only. The file is git-ignored, so it is never on GitHub Pages. -->
+  <script src="config.local.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
